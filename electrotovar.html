@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электротовары</title>
+    <script>
+        function press(el) {
+            el.classList.add("active");
+            setTimeout(() => el.classList.remove("active"), 150);
+        }
+    </script>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            height: 70px;
+            border-bottom: 1px solid rgb(231, 231, 231);
+            align-items: center;
+            background: white;
+            width: 100%;
+        }
+
+        .navbar h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 40px;
+            padding-top: 20px;
+        }
+
+        /* Hamburger button */
+        .menu-btn {
+            cursor: pointer;
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            margin-top: -30px;
+            margin-left: 1250px;
+
+        }
+
+        .menu-btn span {
+            display: block;
+            height: 4px;
+            background: black;
+            border-radius: 2px;
+        }
+
+        .spen1 {
+            margin-bottom: 5px;
+        }
+
+        .spen2 {
+            margin-bottom: 5px;
+        }
+
+        /* Overlay & Side menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #f0f0f0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            padding-top: 10px;
+            transition: left 0.3s ease;
+            z-index: 1001;
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        .link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .link:hover {
+            background: #ddd;
+        }
+
+        .link1 {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .link1:hover {
+            background: #ddd;
+        }
+
+        .link2 {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .link2:hover {
+            background: #ddd;
+        }
+
+        .link3 {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .link3:hover {
+            background: #ddd;
+        }
+
+        .menu h1 {
+            margin-left: 20px;
+        }
+
+        /* Товар 1 */
+        .vmeste {
+            display: flex;
+        }
+
+        .product1 {
+            border: none;
+            border-radius: 15px;
+            background-color: #EDEDED;
+            display: flex;
+            height: 194px;
+            width: 211px;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .product1:active {
+            transform: scale(0.96);
+            /* уменьшение при нажатии */
+        }
+
+        .product2 {
+            text-decoration: none;
+            color: rgb(59, 59, 59);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .product2:hover {
+            color: rgb(218, 218, 0);
+        }
+
+        .product {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-left: 25px;
+            margin-top: 25px;
+            width: 215px;
+            padding-left: 15px;
+            height: 385px;
+            padding-top: 15px;
+            border-radius: 18px;
+            padding-right: 15px;
+        }
+
+        .product3 {
+            margin-top: -12px;
+            padding-bottom: px;
+            cursor: pointer;
+        }
+
+        .product4 {
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+
+        .product5 {
+            margin-left: 5px;
+            margin-top: -5px;
+        }
+
+        .product6 {
+            margin-bottom: 0px;
+            padding-top: 6px;
+            padding-left: 8px;
+            text-decoration: line-through;
+            color: rgb(175, 175, 175);
+        }
+
+        .product7 {
+            margin-top: 0px;
+            padding-left: 8px;
+        }
+
+        .inproduct {
+            background-color: #EDEDED;
+            border-radius: 15px;
+            height: 55px;
+            width: 215px;
+            margin-top: -25px;
+        }
+
+        .inproduct1 {
+            display: flex;
+        }
+
+        .product8 {
+            height: 40px;
+            width: 90px;
+            background-color: #FFD300;
+            border: 2px solid #d1ae00;
+            border-radius: 15px;
+            margin-left: 40px;
+            margin-top: -16px;
+            font-weight: 900;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .product8:active {
+            transform: scale(0.9);
+            /* уменьшение при нажатии */
+        }
+
+        .product8:hover {
+            background-color: #d1ae00;
+            border: 2px solid #FFD300;
+        }
+
+        .discount {
+            background-color: rgb(88, 88, 88);
+            color: #ffffff;
+            height: 20px;
+            width: 50px;
+            margin-left: -197px;
+            margin-top: 15px;
+            border-radius: 0px 15px 15px 0px;
+            padding-top: 3px;
+            font-size: 16px;
+
+        }
+
+        .product9 {
+            margin-top: 5px;
+        }
+
+        .imgprod {
+            height: 174px;
+            width: 191px;
+            border-radius: 15px;
+            padding-left: 4px;
+            padding-top: 8px;
+        }
+
+        /* Товар 2 */
+        .vmeste {
+            display: flex;
+        }
+
+        .productt1 {
+            border: none;
+            border-radius: 15px;
+            background-color: #EDEDED;
+            display: flex;
+            height: 194px;
+            width: 211px;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .productt1:active {
+            transform: scale(0.96);
+            /* уменьшение при нажатии */
+        }
+
+        .productt2 {
+            text-decoration: none;
+            color: rgb(59, 59, 59);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .productt2:hover {
+            color: rgb(218, 218, 0);
+        }
+
+        .productt {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-left: 25px;
+            margin-top: 25px;
+            width: 215px;
+            padding-left: 15px;
+            height: 385px;
+            padding-top: 15px;
+            border-radius: 18px;
+            padding-right: 15px;
+        }
+
+        .productt3 {
+            margin-top: -12px;
+            padding-bottom: px;
+            cursor: pointer;
+        }
+
+        .productt4 {
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+
+        .productt5 {
+            margin-left: 5px;
+            margin-top: -5px;
+        }
+
+        .productt6 {
+            margin-bottom: 0px;
+            padding-top: 6px;
+            padding-left: 8px;
+            text-decoration: line-through;
+            color: rgb(175, 175, 175);
+        }
+
+        .productt7 {
+            margin-top: 0px;
+            padding-left: 8px;
+        }
+
+        .inproductt {
+            background-color: #EDEDED;
+            border-radius: 15px;
+            height: 55px;
+            width: 215px;
+            margin-top: -25px;
+        }
+
+        .inproductt1 {
+            display: flex;
+        }
+
+        .productt8 {
+            height: 40px;
+            width: 90px;
+            background-color: #FFD300;
+            border: 2px solid #d1ae00;
+            border-radius: 15px;
+            margin-left: 55px;
+            margin-top: -16px;
+            font-weight: 900;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .productt8:active {
+            transform: scale(0.9);
+            /* уменьшение при нажатии */
+        }
+
+        .productt8:hover {
+            background-color: #d1ae00;
+            border: 2px solid #FFD300;
+        }
+
+        .discountt {
+            background-color: rgb(88, 88, 88);
+            color: #ffffff;
+            height: 20px;
+            width: 50px;
+            margin-left: -197px;
+            margin-top: 15px;
+            border-radius: 0px 15px 15px 0px;
+            padding-top: 3px;
+            font-size: 16px;
+
+        }
+
+        .productt9 {
+            margin-top: 5px;
+        }
+
+        .imgprodd {
+            height: 174px;
+            width: 191px;
+            border-radius: 15px;
+            padding-left: 4px;
+            padding-top: 8px;
+        }
+
+        /*Отедльные дивы*/
+
+        /* Товар 3 */
+        .vmeste {
+            display: flex;
+        }
+
+        .producttt1 {
+            border: none;
+            border-radius: 15px;
+            background-color: #EDEDED;
+            display: flex;
+            height: 194px;
+            width: 211px;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .producttt1:active {
+            transform: scale(0.96);
+            /* уменьшение при нажатии */
+        }
+
+        .producttt2 {
+            text-decoration: none;
+            color: rgb(59, 59, 59);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .producttt2:hover {
+            color: rgb(218, 218, 0);
+        }
+
+        .producttt {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-left: 25px;
+            margin-top: 25px;
+            width: 215px;
+            padding-left: 15px;
+            height: 385px;
+            padding-top: 15px;
+            border-radius: 18px;
+            padding-right: 15px;
+        }
+
+        .producttt3 {
+            margin-top: -12px;
+            padding-bottom: px;
+            cursor: pointer;
+        }
+
+        .producttt4 {
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+
+        .producttt5 {
+            margin-left: 5px;
+            margin-top: -5px;
+        }
+
+        .producttt6 {
+            margin-bottom: 0px;
+            padding-top: 6px;
+            padding-left: 8px;
+            text-decoration: line-through;
+            color: rgb(175, 175, 175);
+        }
+
+        .producttt7 {
+            margin-top: 0px;
+            padding-left: 8px;
+        }
+
+        .inproducttt {
+            background-color: #EDEDED;
+            border-radius: 15px;
+            height: 55px;
+            width: 215px;
+            margin-top: -25px;
+        }
+
+        .inproducttt1 {
+            display: flex;
+        }
+
+        .producttt8 {
+            height: 40px;
+            width: 90px;
+            background-color: #FFD300;
+            border: 2px solid #d1ae00;
+            border-radius: 15px;
+            margin-left: 40px;
+            margin-top: -16px;
+            font-weight: 900;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .producttt8:active {
+            transform: scale(0.9);
+            /* уменьшение при нажатии */
+        }
+
+        .producttt8:hover {
+            background-color: #d1ae00;
+            border: 2px solid #FFD300;
+        }
+
+        .discounttt {
+            background-color: rgb(88, 88, 88);
+            color: #ffffff;
+            height: 20px;
+            width: 50px;
+            margin-left: -197px;
+            margin-top: 15px;
+            border-radius: 0px 15px 15px 0px;
+            padding-top: 3px;
+            font-size: 16px;
+
+        }
+
+        .producttt9 {
+            margin-top: 5px;
+        }
+
+        .imgproddd {
+            height: 174px;
+            width: 191px;
+            border-radius: 15px;
+            padding-left: 4px;
+            padding-top: 8px;
+        }
+
+        /* Товар 4 */
+        .vmeste {
+            display: flex;
+        }
+
+        .productttt1 {
+            border: none;
+            border-radius: 15px;
+            background-color: #EDEDED;
+            display: flex;
+            height: 194px;
+            width: 211px;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .productttt1:active {
+            transform: scale(0.96);
+            /* уменьшение при нажатии */
+        }
+
+        .productttt2 {
+            text-decoration: none;
+            color: rgb(59, 59, 59);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .productttt2:hover {
+            color: rgb(218, 218, 0);
+        }
+
+        .productttt {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-left: 25px;
+            margin-top: 25px;
+            width: 215px;
+            padding-left: 15px;
+            height: 385px;
+            padding-top: 15px;
+            border-radius: 18px;
+            padding-right: 15px;
+        }
+
+        .productttt3 {
+            margin-top: -12px;
+            padding-bottom: px;
+            cursor: pointer;
+        }
+
+        .productttt4 {
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+
+        .productttt5 {
+            margin-left: 5px;
+            margin-top: -5px;
+        }
+
+        .productttt6 {
+            margin-bottom: 0px;
+            padding-top: 6px;
+            padding-left: 8px;
+            text-decoration: line-through;
+            color: rgb(175, 175, 175);
+        }
+
+        .productttt7 {
+            margin-top: 0px;
+            padding-left: 8px;
+        }
+
+        .inproductttt {
+            background-color: #EDEDED;
+            border-radius: 15px;
+            height: 55px;
+            width: 215px;
+            margin-top: -25px;
+        }
+
+        .inproductttt1 {
+            display: flex;
+        }
+
+        .productttt8 {
+            height: 40px;
+            width: 90px;
+            background-color: #FFD300;
+            border: 2px solid #d1ae00;
+            border-radius: 15px;
+            margin-left: 55px;
+            margin-top: -16px;
+            font-weight: 900;
+            transition: transform 0.1s ease;
+            /* плавный переход */
+        }
+
+        .productttt8:active {
+            transform: scale(0.9);
+            /* уменьшение при нажатии */
+        }
+
+        .productttt8:hover {
+            background-color: #d1ae00;
+            border: 2px solid #FFD300;
+        }
+
+        .discountttt {
+            background-color: rgb(88, 88, 88);
+            color: #ffffff;
+            height: 20px;
+            width: 50px;
+            margin-left: -197px;
+            margin-top: 15px;
+            border-radius: 0px 15px 15px 0px;
+            padding-top: 3px;
+            font-size: 16px;
+
+        }
+
+        .productttt9 {
+            margin-top: 5px;
+        }
+
+        .imgprodddd {
+            height: 174px;
+            width: 191px;
+            border-radius: 15px;
+            padding-left: 4px;
+            padding-top: 8px;
+        }
+
+        .no {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        /*Отдельно*/
+        .vmestemore {
+            display: flex;
+        }
+
+        .vmesteot {
+            display: flex;
+        }
+
+
+
+
+        @media (max-width: 480px) {
+            /* Общие стили для .product на маленьких экранах */
+            /*Товар 1*/
+            .product {
+                height: 355px;
+                width: 190px;
+                margin-left: 15px;
+            }
+
+            .product1 {
+                height: 175px;
+                width: 190px
+            }
+
+            .imgprod {
+                height: 155px;
+                width: 165px;
+            }
+
+            .product2 {
+                font-size: 17px;
+                font-weight: bold;
+            }
+
+            .product4 {
+                font-size: 14px;
+            }
+
+            .product9 {
+                font-size: 14px;
+            }
+
+            .product3 {
+                font-size: 14px;
+            }
+
+            .product5 {
+                font-size: 14px;
+            }
+
+            .product6 {
+                font-size: 16px;
+            }
+
+            .product7 {
+                font-size: 20px;
+            }
+
+            .product8 {
+                margin-left: 35px;
+                width: 80px;
+                font-size: 11px;
+            }
+
+            .inproduct {
+                width: 190px;
+            }
+
+            .discount {
+                margin-left: -175px;
+            }
+
+            /*Товар 2*/
+            .productt {
+                height: 355px;
+                width: 190px;
+                margin-left: 10px;
+                margin-right: 15px;
+            }
+
+            .productt1 {
+                height: 175px;
+                width: 190px
+            }
+
+            .imgprodd {
+                height: 155px;
+                width: 165px;
+            }
+
+            .productt2 {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .productt4 {
+                font-size: 14px;
+            }
+
+            .productt9 {
+                font-size: 14px;
+            }
+
+            .productt3 {
+                font-size: 14px;
+            }
+
+            .productt5 {
+                font-size: 14px;
+            }
+
+            .productt6 {
+                font-size: 16px;
+            }
+
+            .productt7 {
+                font-size: 20px;
+            }
+
+            .productt8 {
+                margin-left: 45px;
+                width: 80px;
+                font-size: 11px;
+            }
+
+            .inproductt {
+                width: 190px;
+            }
+
+            .discountt {
+                margin-left: -175px;
+            }
+
+            /*Отельные товары*/
+
+            /*Товар 3*/
+            .producttt {
+                height: 355px;
+                width: 190px;
+                margin-left: 15px;
+            }
+
+            .producttt1 {
+                height: 175px;
+                width: 190px
+            }
+
+            .imgproddd {
+                height: 155px;
+                width: 165px;
+            }
+
+            .producttt2 {
+                font-size: 17px;
+                font-weight: bold;
+            }
+
+            .producttt4 {
+                font-size: 14px;
+            }
+
+            .producttt9 {
+                font-size: 14px;
+            }
+
+            .producttt3 {
+                font-size: 14px;
+            }
+
+            .producttt5 {
+                font-size: 14px;
+            }
+
+            .producttt6 {
+                font-size: 16px;
+            }
+
+            .producttt7 {
+                font-size: 20px;
+            }
+
+            .producttt8 {
+                margin-left: 35px;
+                width: 80px;
+                font-size: 11px;
+            }
+
+            .inproducttt {
+                width: 190px;
+            }
+
+            .discounttt {
+                margin-left: -175px;
+            }
+
+            /*Товар 4*/
+            .productttt {
+                height: 355px;
+                width: 190px;
+                margin-left: 10px;
+                margin-right: 15px;
+            }
+
+            .productttt1 {
+                height: 175px;
+                width: 190px
+            }
+
+            .imgprodddd {
+                height: 155px;
+                width: 165px;
+            }
+
+            .productttt2 {
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            .productttt4 {
+                font-size: 14px;
+            }
+
+            .productttt9 {
+                font-size: 14px;
+            }
+
+            .productttt3 {
+                font-size: 14px;
+            }
+
+            .productttt5 {
+                font-size: 14px;
+            }
+
+            .productttt6 {
+                font-size: 16px;
+            }
+
+            .productttt7 {
+                font-size: 20px;
+            }
+
+            .productttt8 {
+                margin-left: 45px;
+                width: 80px;
+                font-size: 11px;
+            }
+
+            .inproductttt {
+                width: 190px;
+            }
+
+            .discountttt {
+                margin-left: -175px;
+            }
+
+
+
+            .menu-btn { /* Этот стиль уже есть в общем блоке, но здесь он переопределяется */
+                margin-left: 400px;
+            }
+
+            .vmesteot {
+                flex-direction: column;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .poisk {
+                margin-left: -300px;
+            }
+        }
+
+        .poisk {
+            margin-left: 50px;
+            width: 500px;
+            height: 25px;
+            border-radius: 100px;
+            padding-left: 10px;
+            border: 3px solid #777777;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .header img {
+            width: 20px;
+            height: 20px;
+            margin-left: -40px;
+            margin-bottom: -5px;
+        }
+
+        .product3 img {
+            width: 28px;
+            height: 28px;
+            margin-bottom: -7px;
+        }
+
+        .productt3 img {
+            width: 28px;
+            height: 28px;
+            margin-bottom: -7px;
+        }
+
+        .producttt3 img {
+            width: 28px;
+            height: 28px;
+            margin-bottom: -7px;
+        }
+
+        .productttt3 img {
+            width: 28px;
+            height: 28px;
+            margin-bottom: -7px;
+        }
+
+        .bx990 {
+            position: relative;
+            display: inline-block;
+        }
+
+        #bn900 {
+            padding: 10px 14px;
+            background: #FFD300;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-left: 30px;
+
+        }
+
+        #bn900:hover {
+            background: #e7c100;
+        }
+
+        /* окно фильтра */
+        #bx991 {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            background: rgb(39, 39, 39);
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            padding: 12px;
+            padding-right: 23px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 10;
+            margin-left: 30px;
+            color: white;
+
+        }
+
+        /* когда активно */
+        #bx991.qq_open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #bx991 input {
+            width: 100%;
+            padding: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        #bn901 {
+            background: #FFD300;
+            border: none;
+            color: black;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        #bn901:hover {
+            background: #e7c100;
+        }
+
+        .prd555 {
+            margin-top: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .novmeste {
+            display: block;
+        }
+
+        .header {
+            display: inline;
+        }
+
+        .prMin,
+        .prMax {
+            width: 160px;
+        }
+
+
+        #klm112 {
+            background: #FFD300;
+            /* зелёный — показываем все */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            margin-left: 100px;
+        }
+
+        #klm112.actx {
+            background: #dc3545;
+            /* красный — фильтр активен */
+        }
+
+        .zxpr988 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .vtr_99 {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 150px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .vtr_99 h3 {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .vtr_99 span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .vtr_99.nno {
+            opacity: 0.4;
+        }
+
+        .hide_xx {
+            display: none;
+        }
+
+
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+        .xxx {
+            text-align: center;
+            margin-top: 0px;
+            font-size: 14px;
+            color: #636363;
+            margin-bottom: 0px;
+            background-color: #c9c9c9;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .btnSS{
+            background-color: #FFD300;
+            color: rgb(63, 63, 63);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .vipP{
+            font-size: 22px;
+            font-weight: bold;
+        }
+    /* Responsive for product list */
+    @media (max-width: 768px) {
+      .vmeste { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .vmeste { flex-direction: column; }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>
+            <span style="color: #FFD300;" class="in">Ол</span><span style="color: black;" class="in1">жа</span>
+        </h1>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span class="spen1"></span>
+            <span class="spen2"></span>
+            <span class="spen3"></span>
+        </div>
+    </div>
+    <div class="vmest">
+        <button id="klm112"> Все товары</button>
+        <div class="bx990">
+            <button id="bn900">Цена ▾</button>
+
+            <div id="bx991">
+                <label>От: <input type="number" id="prMin" placeholder="0" class="prMin"></label>
+                <label>До: <input type="number" id="prMax" placeholder="10000" class="prMax"></label>
+                <button id="bn901">Применить</button>
+            </div>
+        </div>
+        <div class="header">
+            <input class="poisk" type="text" id="search" placeholder="Поиск...">
+            <img src="src.png">
+        </div>
+    </div>
+
+    <div class="vmesteot" id="list">
+        <div class="vmestemore">
+            <div class="product" data-price="1300" data-stock="yes">
+                <button class="product1"><img src="Розетка.jpg" class="imgprod">
+                    <h4 class="discount">-27%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="product2">Розетка 220В 10А</a>
+                </div>
+                <p class="product4">Модель: Werkel vintage</p>
+                <p class="product9">Сделано в Китае</p>
+                <div class="vmeste">
+                    <a class="product3"><img src="звезда.png">0,0</a>
+                    <p class="product5">• 1 шт</p>
+                </div>
+                <div class="inproduct">
+                    <h4 class="product6">1800₸</h4>
+                    <div class="inproduct1">
+                        <h2 class="product7">1300₸</h4>
+                            <button class="product8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-price="800" data-stock="yes">
+                <button class="productt1"><img src="выключатель1.jpg" class="imgprodd">
+                    <h4 class="discountt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productt2">Двойной выключатель</a>
+                </div>
+                <p class="productt4">Модель: Jung A500</p>
+                <p class="productt9">Сделано в Германий</p>
+                <div class="vmeste">
+                    <a class="productt3"><img src="звезда.png">0,0</a>
+                    <p class="productt5">• 1 шт</p>
+                </div>
+                <div class="inproductt">
+                    <h4 class="productt6">1200₸</h4>
+                    <div class="inproductt1">
+                        <h2 class="productt7">800₸</h4>
+                            <button class="productt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-stock="no">
+                <button class="productttt1"><img src="выключатель с розеткой.jpg" class="imgprodddd">
+                    <h4 class="discountttt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productttt2">Выключатель с розеткой</a>
+                </div>
+                <p class="productttt4">Модель: Jung A500</p>
+                <p class="productttt9">Сделано в США</p>
+                <div class="vmeste">
+                    <a class="productttt3"><img src="звезда.png">0,0</a>
+                    <p class="productttt5">• 1 шт</p>
+                </div>
+                <div class="inproductttt">
+                    <h3 class="no">Нет в наличии</h3>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vmesteot" id="list">
+        <div class="vmestemore">
+            <div class="product" data-price="1300" data-stock="yes">
+                <button class="product1"><img src="Розетка.jpg" class="imgprod">
+                    <h4 class="discount">-27%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="product2">Розетка 220В 10А</a>
+                </div>
+                <p class="product4">Модель: Werkel vintage</p>
+                <p class="product9">Сделано в Китае</p>
+                <div class="vmeste">
+                    <a class="product3"><img src="звезда.png">0,0</a>
+                    <p class="product5">• 1 шт</p>
+                </div>
+                <div class="inproduct">
+                    <h4 class="product6">1800₸</h4>
+                    <div class="inproduct1">
+                        <h2 class="product7">1300₸</h4>
+                            <button class="product8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-price="800" data-stock="yes">
+                <button class="productt1"><img src="выключатель1.jpg" class="imgprodd">
+                    <h4 class="discountt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productt2">Двойной выключатель</a>
+                </div>
+                <p class="productt4">Модель: Jung A500</p>
+                <p class="productt9">Сделано в Германий</p>
+                <div class="vmeste">
+                    <a class="productt3"><img src="звезда.png">0,0</a>
+                    <p class="productt5">• 1 шт</p>
+                </div>
+                <div class="inproductt">
+                    <h4 class="productt6">1200₸</h4>
+                    <div class="inproductt1">
+                        <h2 class="productt7">800₸</h4>
+                            <button class="productt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-stock="no">
+                <button class="productttt1"><img src="выключатель с розеткой.jpg" class="imgprodddd">
+                    <h4 class="discountttt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productttt2">Выключатель с розеткой</a>
+                </div>
+                <p class="productttt4">Модель: Jung A500</p>
+                <p class="productttt9">Сделано в США</p>
+                <div class="vmeste">
+                    <a class="productttt3"><img src="звезда.png">0,0</a>
+                    <p class="productttt5">• 1 шт</p>
+                </div>
+                <div class="inproductttt">
+                    <h3 class="no">Нет в наличии</h3>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vmesteot" id="list">
+        <div class="vmestemore">
+            <div class="product" data-price="1300" data-stock="yes">
+                <button class="product1"><img src="Розетка.jpg" class="imgprod">
+                    <h4 class="discount">-27%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="product2">Розетка 220В 10А</a>
+                </div>
+                <p class="product4">Модель: Werkel vintage</p>
+                <p class="product9">Сделано в Китае</p>
+                <div class="vmeste">
+                    <a class="product3"><img src="звезда.png">0,0</a>
+                    <p class="product5">• 1 шт</p>
+                </div>
+                <div class="inproduct">
+                    <h4 class="product6">1800₸</h4>
+                    <div class="inproduct1">
+                        <h2 class="product7">1300₸</h4>
+                            <button class="product8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-price="800" data-stock="yes">
+                <button class="productt1"><img src="выключатель1.jpg" class="imgprodd">
+                    <h4 class="discountt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productt2">Двойной выключатель</a>
+                </div>
+                <p class="productt4">Модель: Jung A500</p>
+                <p class="productt9">Сделано в Германий</p>
+                <div class="vmeste">
+                    <a class="productt3"><img src="звезда.png">0,0</a>
+                    <p class="productt5">• 1 шт</p>
+                </div>
+                <div class="inproductt">
+                    <h4 class="productt6">1200₸</h4>
+                    <div class="inproductt1">
+                        <h2 class="productt7">800₸</h4>
+                            <button class="productt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-stock="no">
+                <button class="productttt1"><img src="выключатель с розеткой.jpg" class="imgprodddd">
+                    <h4 class="discountttt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productttt2">Выключатель с розеткой</a>
+                </div>
+                <p class="productttt4">Модель: Jung A500</p>
+                <p class="productttt9">Сделано в США</p>
+                <div class="vmeste">
+                    <a class="productttt3"><img src="звезда.png">0,0</a>
+                    <p class="productttt5">• 1 шт</p>
+                </div>
+                <div class="inproductttt">
+                    <h3 class="no">Нет в наличии</h3>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vmesteot" id="list">
+        <div class="vmestemore">
+            <div class="product" data-price="1300" data-stock="yes">
+                <button class="product1"><img src="Розетка.jpg" class="imgprod">
+                    <h4 class="discount">-27%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="product2">Розетка 220В 10А</a>
+                </div>
+                <p class="product4">Модель: Werkel vintage</p>
+                <p class="product9">Сделано в Китае</p>
+                <div class="vmeste">
+                    <a class="product3"><img src="звезда.png">0,0</a>
+                    <p class="product5">• 1 шт</p>
+                </div>
+                <div class="inproduct">
+                    <h4 class="product6">1800₸</h4>
+                    <div class="inproduct1">
+                        <h2 class="product7">1300₸</h4>
+                            <button class="product8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-price="800" data-stock="yes">
+                <button class="productt1"><img src="выключатель1.jpg" class="imgprodd">
+                    <h4 class="discountt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productt2">Двойной выключатель</a>
+                </div>
+                <p class="productt4">Модель: Jung A500</p>
+                <p class="productt9">Сделано в Германий</p>
+                <div class="vmeste">
+                    <a class="productt3"><img src="звезда.png">0,0</a>
+                    <p class="productt5">• 1 шт</p>
+                </div>
+                <div class="inproductt">
+                    <h4 class="productt6">1200₸</h4>
+                    <div class="inproductt1">
+                        <h2 class="productt7">800₸</h4>
+                            <button class="productt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product" data-stock="no">
+                <button class="productttt1"><img src="выключатель с розеткой.jpg" class="imgprodddd">
+                    <h4 class="discountttt">-33%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="productttt2">Выключатель с розеткой</a>
+                </div>
+                <p class="productttt4">Модель: Jung A500</p>
+                <p class="productttt9">Сделано в США</p>
+                <div class="vmeste">
+                    <a class="productttt3"><img src="звезда.png">0,0</a>
+                    <p class="productttt5">• 1 шт</p>
+                </div>
+                <div class="inproductttt">
+                    <h3 class="no">Нет в наличии</h3>
+                </div>
+            </div>
+        </div>
+        <div class="vmestemore">
+            <div class="product" data-price="1500" data-stock="yes">
+                <button class="producttt1"><img src="выключатель2.jpg" class="imgproddd">
+                    <h4 class="discounttt">-25%</h4>
+                </button>
+                <div class="vmeste">
+                    <a href=".html" class="producttt2">Выключатель</a>
+                </div>
+                <p class="producttt4">Модель: Vip Kazakh</p>
+                <p class="producttt9">Сделано в Казахстане</p>
+                <div class="vmeste">
+                    <a class="producttt3"><img src="звезда.png">0,0</a>
+                    <p class="producttt5">• 1 шт</p>
+                </div>
+                <div class="inproducttt">
+                    <h4 class="producttt6">2000₸</h4>
+                    <div class="inproducttt1">
+                        <h2 class="producttt7">1500₸</h4>
+                            <button class="producttt8">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+    <div class="menu" id="menu">
+        <h1>Меню</h1>
+        <a class="link" href="jffffff.html">🏠 Главная</a>
+        <a class="link1" href="Onas.html">ℹ️ О нас</a>
+        <a class="link2" href="contact.html">📞 Контакты & инфо</a>
+        <a class="link3" href="catolog.html">🛒Каталог</a>
+    </div>
+    <div class="footer">
+        <p class="vipP">Нашел ошибку(-и) сайта?</p>
+        <p>Напиши нам:</p>
+        <button onclick="window.location.href='https://wa.me/77762857679'" class="btnSS">WhatsApp</button>
+        <button onclick="window.location.href='https://t.me/vebrazrab2011'" class="btnSS">Telegram</button>
+        <p>Или через почту (Рекомендуется):</p>
+        <button onclick="window.location.href='forum.html'" class="btnSS">Email</button>
+    </div>
+    <p class="xxx">© 2025 Строительный магазин "Олжа". Все права защищены.</p>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
+            document.getElementById("overlay").classList.toggle("active");
+        }
+
+        function closeMenu() {
+            document.getElementById("menu").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+        }
+
+        /*ПОИСК*/
+        const search = document.getElementById('search');
+        const items = document.querySelectorAll('.product');
+
+        search.addEventListener('keyup', () => {
+            const text = search.value.toLowerCase();
+
+            items.forEach(div => {
+                const linkText = div.querySelector('a').textContent.toLowerCase();
+                if (linkText.includes(text) && text !== '') {
+                    div.style.display = 'block';  // показываем совпадение
+                } else if (text === '') {
+                    div.style.display = 'block';  // если поле пустое — показываем всё
+                } else {
+                    div.style.display = 'none';   // скрываем не совпавшие
+                }
+            });
+        });
+        /* ФИЛЬТР ЦЕНА */
+        const btnPrice = document.getElementById("bn900");
+        const boxPrice = document.getElementById("bx991");
+        const applyPrice = document.getElementById("bn901");
+
+        // открыть/закрыть окно фильтра
+        btnPrice.addEventListener("click", (e) => {
+            e.stopPropagation();
+            boxPrice.classList.toggle("qq_open");
+        });
+
+        // фильтрация товаров
+        applyPrice.addEventListener("click", () => {
+            const min = parseInt(document.getElementById("prMin").value) || 0;
+            const max = parseInt(document.getElementById("prMax").value) || Infinity;
+            const items = document.querySelectorAll(".product");
+
+            items.forEach(el => {
+                const price = parseInt(el.dataset.price);
+                el.style.display = (price >= min && price <= max) ? "block" : "none";
+            });
+        });
+
+        // закрытие при клике вне окна
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".bx990")) {
+                boxPrice.classList.remove("qq_open");
+            }
+        });
+
+
+        /*  НЕТ В НАЛИЧИЕ ИЛИ ПОКАЗАТЬ ВСЕ ТОВАРЫ  */
+        const btnt = document.getElementById('klm112');
+  const itemsd = document.querySelectorAll('.product');
+
+  btnt.addEventListener('click', () => {
+    btnt.classList.toggle('actx');
+
+    if (btnt.classList.contains('actx')) {
+      btnt.textContent = 'Нет в наличии';
+      itemsd.forEach(el => {
+        if (el.dataset.stock === 'yes') el.classList.add('hide_xx');
+        else el.classList.remove('hide_xx');
+      });
+    } else {
+      btnt.textContent = 'Все товары';
+      itemsd.forEach(el => el.classList.remove('hide_xx'));
+    }
+  });
+    </script>
+</body>
+
+</html>

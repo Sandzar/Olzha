@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <script>
+        function press(el) {
+            el.classList.add("active");
+            setTimeout(() => el.classList.remove("active"), 150);
+        }
+    </script>
+    <style>
+         /* General styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            border-bottom: 1px solid rgb(231, 231, 231);
+            padding: 0 15px;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+        }
+
+        .in {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 30px;
+        }
+        .in1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: -1140px;
+        }
+
+        /* Hamburger button */
+        .menu-btn {
+            cursor: pointer;
+            width: 30px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-right: 35px;
+        }
+
+        .menu-btn span {
+            display: block;
+            height: 4px;
+            background: black;
+            border-radius: 2px;
+        }
+         /* Overlay & Side menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #f0f0f0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            padding-top: 10px;
+            transition: left 0.3s ease;
+            z-index: 1001;
+        }
+
+        .menu.active {
+            left: 0;
+        }
+
+        .link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .link:hover {
+            background: #ddd;
+        }
+        .link1 {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .link1:hover {
+            background: #ddd;
+        }
+        .link2 {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            background: #c2c2c2;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .link2:hover {
+            background: #ddd;
+        }
+        .menu h1{
+            margin-left: 20px;
+        }
+
+         /* About Us Section */
+        .onas {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            margin: 20px auto;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #FFD300;
+        }
+
+        .text h2 {
+            font-size: 30px;
+        }
+
+        .text p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .okno5{
+            background-color: #000000e5;
+            height: 500px;
+        }
+        .okno5 h1 {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 8px 16px;
+            display: inline-block;
+            margin-left: 5%;
+            background-color: #FFD300;
+        }
+         .footer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+        .xxx {
+            text-align: center;
+            margin-top: 0px;
+            font-size: 14px;
+            color: #636363;
+            margin-bottom: 0px;
+            background-color: #c9c9c9;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .btnSS{
+            background-color: #FFD300;
+            color: rgb(63, 63, 63);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    .vipP{
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+    /* Responsive for About page */
+    @media (max-width: 768px) {
+      .onas { margin: 10px; padding: 10px; }
+      .text h2 { font-size: 24px; }
+      .text p { font-size: 14px; }
+    }
+    @media (max-width: 480px) {
+      .onas { margin: 5px; padding: 8px; }
+      .text h2 { font-size: 20px; }
+      .text p { font-size: 12px; }
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span style="color: #FFD300;" class="in">Ол</span><span style="color: black;" class="in1">жа</span>
+        <div class="menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+    <div class="menu" id="menu">
+        <h1>Меню</h1>
+        <a class="link" href="jffffff.html">🏠 Главная</a>
+        <a class="link1" href="Onas.html">ℹ️ О нас</a>
+        <a class="link2" href="contact.html">📞 Контакты & инфо</a>
+    </div>
+        <div class="okno5">
+        <h1>О нас</h1>
+        <div class="onas">
+            <div class="text">
+                <h2>Строительный магазин «Олжа»</h2>
+                <p>Это надёжный помощник в строительстве и ремонте. Здесь вы найдёте всё необходимое: от цемента, кирпича и арматуры до лакокрасочных материалов, инструментов и крепежа.</p>
+                <p>Мы предлагаем только качественные товары от проверенных производителей, которые обеспечат прочность и долговечность любого проекта. В ассортименте «Олжа» — материалы для строительства домов, ремонта квартир и благоустройства участков.</p>
+                <p>Магазин сочетает широкий выбор, честные цены и удобный сервис. Мы помогаем клиентам строить с уверенностью и создавать комфорт в каждом доме.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="vipP">Нашел ошибку(-и) сайта?</p>
+        <p>Напиши нам:</p>
+        <button onclick="window.location.href='https://wa.me/77762857679'" class="btnSS">WhatsApp</button>
+        <button onclick="window.location.href='https://t.me/vebrazrab2011'" class="btnSS">Telegram</button>
+        <p>Или через почту (Рекомендуется):</p>
+        <button onclick="window.location.href='forum.html'" class="btnSS">Email</button>
+    </div>
+    <p class="xxx">© 2025 Строительный магазин "Олжа". Все права защищены.</p>
+    <script>
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
+            document.getElementById("overlay").classList.toggle("active");
+        }
+
+        function closeMenu() {
+            document.getElementById("menu").classList.remove("active");
+            document.getElementById("overlay").classList.remove("active");
+        }
+    </script>
+</body>
+</html>

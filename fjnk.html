@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Связаться с нами</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #111;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .contact-container {
+      background: #1c1c1c;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-container:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 40px rgba(255,255,255,0.2);
+    }
+
+    .contact-container h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      background: #2a2a2a;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .contact-container input:focus,
+    .contact-container textarea:focus {
+      background: #333;
+      box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+
+    .contact-container button {
+      background: #fff;
+      color: #111;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .contact-container button:hover {
+      background: #000;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    }
+
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 20px;
+      background: #2a2a2a;
+      padding: 10px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #fff;
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    /* Responsive for contact form */
+    @media (max-width: 768px) {
+      .contact-container { width: 90%; margin: auto; }
+    }
+    @media (max-width: 480px) {
+      .contact-container { width: 100%; padding: 20px; }
+    }
+  </style>
+
+  <!-- FontAwesome для иконок -->
+  <script src="https://kit.fontawesome.com/4e7d4e6a6b.js" crossorigin="anonymous"></script>
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("g23TtgSEN17PRMHet"); // вставь свой Public Key
+    })();
+
+    function sendMail(event) {
+      event.preventDefault();
+
+      emailjs.sendForm("service_lgixn5j", "template_zqatkri", event.target)
+        .then(() => {
+          document.getElementById("status").innerText = "✅ Сообщение отправлено!";
+        }, (error) => {
+          document.getElementById("status").innerText = "❌ Ошибка: " + error.text;
+        });
+    }
+  </script>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>Нашел ошибку сайта?<br>Напиши нам!</h2>
+    <form onsubmit="sendMail(event)">
+      <input type="text" name="user_name" placeholder="Ваше имя" required>
+      <input type="email" name="user_email" placeholder="Ваш Email" required>
+      <textarea name="message" rows="4" placeholder="Ваше сообщение..." required></textarea>
+      <button type="submit">Отправить</button>
+    </form>
+
+    <div id="status"></div>
+  </div>
+</body>
+</html>

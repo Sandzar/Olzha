@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Олжа</title>
+  <link rel="icon" type="image/png" href="иконка олжа.png">
+  <script>
+    function press(el) {
+      el.classList.add("active"); setTimeout(() => el.classList.remove("active"), 150);
+    }
+  </script>
+  <style>
+    .rabota {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 40px;
+      padding: 15px;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-top: 50px;
+      /* Начальное состояние: невидимый и сдвинут влево */
+      opacity: 0;
+      transform: translateX(-100px);
+
+      /* Плавный переход для всех свойств (opacity и transform) */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .rabota.is-visible {
+      /* Конечное состояние: полностью видимый и на месте */
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* Шапка */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      border-bottom: 1px solid rgb(231, 231, 231);
+      padding: 0 15px;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 1000;
+    }
+
+    .navbar h1 {
+      background: linear-gradient(to right, green 50%, red 50%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      margin-left: 20px;
+    }
+
+    /* Кнопка-гамбургер */
+    .menu-btn {
+      cursor: pointer;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-right: 35px;
+    }
+
+    .menu-btn span {
+      display: block;
+      height: 4px;
+      background: black;
+      border-radius: 2px;
+    }
+
+    /* Оверлей */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* Боковое меню */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: #f0f0f0;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1001;
+    }
+
+    .menu.active {
+      left: 0;
+    }
+
+    .menu a {
+      display: block;
+      padding: 15px 20px;
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+    }
+
+    .menu a:hover {
+      background: #ddd;
+    }
+
+    /* Заголовок блока */
+    .okno1 h1 {
+      margin-left: 20px;
+    }
+
+    /* Слайдер */
+    .slider {
+      position: relative;
+      max-width: 100%;
+
+      height: 450px;
+      margin-left: 0px;
+      overflow: hidden;
+
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    /* ==================================================================== */
+/* Адаптивность для мобильных устройств (ширина экрана до 1000px) */
+/* ==================================================================== */
+@media (max-width: 1000px) {
+    /* Общие корректировки для центрирования на узких экранах */
+    .rabota, .nomer, .adress {
+        margin-left: 10%; /* Уменьшаем боковые отступы */
+        margin-right: 10%;
+        width: auto; /* Позволяем блоку занять доступную ширину */
+    }
+
+    /* Секция "О нас" */
+    .onas {
+        margin-left: 5%; /* Уменьшаем боковые отступы для всего блока */
+        margin-right: 5%;
+    }
+
+    .text {
+        margin-left: 20px; /* Уменьшаем отступ текста внутри блока "О нас" */
+    }
+
+    .text h2 {
+        font-size: 24px; /* Немного уменьшаем заголовок */
+    }
+
+    .text p {
+        /* Убираем <br> на мобильных, чтобы текст не обрывался */
+        display: block; 
+    }
+
+    /* Корректировка контейнеров с кнопками каталога */
+    .tovar, .tovar1 {
+        display: grid; /* Используем grid для создания адаптивной сетки */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2-3 кнопки в ряд */
+        gap: 15px; /* Промежуток между кнопками */
+        margin: 0 10px; /* Уменьшаем общий отступ */
+        justify-items: center; /* Центрируем кнопки внутри ячеек */
+    }
+    
+    /* Стили для кнопок каталога */
+    .btn5, .btn6, .btn7, .btn8, .btn9, .btn10, .btn11, .btn12, .btn13 {
+        width: 100%; /* Занимают всю ширину сетки */
+        max-width: 180px; /* Ограничиваем максимальный размер */
+        height: 120px;
+        margin: 0; /* Убираем лишние margin-left */
+        font-size: 15px; /* Немного уменьшаем шрифт */
+        padding-top: 5px;
+    }
+
+    /* Отзывы */
+    .more {
+        flex-direction: column; /* Отзывы идут друг под другом */
+        align-items: center; /* Центрируем отзывы */
+    }
+
+    .otziv1, .otziv2, .otziv3 {
+        width: 80%; /* Занимают большую часть ширины */
+        margin-left: 0; /* Убираем лишний левый отступ */
+        margin-bottom: 20px; /* Добавляем отступ между отзывами */
+    }
+
+    /* Заголовки (Каталог, Акции, О нас, Отзывы) */
+    .catolog h1, .okno1 h1, .okno5 h1, .otziv h1 {
+        margin-left: 5%; /* Корректируем отступ слева */
+        margin-right: auto; /* Убираем жесткий правый отступ */
+        width: auto;
+        padding-right: 20px;
+    }
+    .okno5 {
+        margin-top: 50px; /* Уменьшаем отступ сверху */
+    }
+
+    /* Подвал */
+    .footer {
+        padding: 15px;
+        text-align: center; /* Центрируем текст в подвале */
+    }
+    .footer p {
+        margin-bottom: 10px;
+    }
+    .footer .xxx {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Ссылки на карты и соцсети */
+    .ssilka {
+        margin-left: 0; /* Убираем боковой отступ */
+        justify-content: center; /* Центрируем кнопки */
+    }
+    .nomer h2 {
+        text-align: center;
+    }
+    .nomer button, .adress button {
+        /* Центрируем иконки под номерами/адресом */
+        margin-left: 5px; 
+        margin-right: 5px;
+    }
+    .nomer {
+        text-align: center;
+    }
+    
+    /* Слайдер */
+    .slider {
+        height: 250px; /* Уменьшаем высоту для мобильных */
+    }
+}
+
+/* ==================================================================== */
+/* Дополнительные стили для очень узких экранов (ширина до 500px) */
+/* ==================================================================== */
+@media (max-width: 500px) {
+    .navbar h1 {
+        font-size: 26px;
+    }
+    
+    .menu-btn {
+        margin-right: 15px; /* Уменьшаем отступ гамбургера */
+    }
+
+    /* Центрируем блоки на очень узких экранах */
+    .rabota, .nomer, .adress {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    /* Заголовки */
+    .catolog h1, .okno1 h1, .okno5 h1, .otziv h1 {
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 24px;
+        padding: 5px 10px;
+    }
+    .catolog h1 {
+        margin-right: 70%;
+    }
+    .okno1 h1 {
+        margin-right: 70%;
+    }
+    .okno5 h1 {
+        margin-right: 70%;
+    }
+    .otziv h1 {
+        margin-right: 70%;
+    }
+
+    /* Слайдер */
+    .slider {
+        height: 200px;
+    }
+
+    /* "О нас" текст */
+    .text {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .onas {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    /* Отзывы */
+    .otziv1, .otziv2, .otziv3 {
+        width: 90%; 
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+    .p2, .p5, .p8 {
+        font-size: 15px;
+    }
+    
+    /* Ссылки на карты */
+    .ssilka {
+        /* Обеспечиваем, чтобы ссылки не выходили за границы */
+        padding: 0 10px;
+        flex-wrap: wrap; /* Если не помещаются, переносим */
+        justify-content: space-around;
+    }
+    .gis, .googlemap, .yandex {
+        margin: 10px 5px;
+    }
+}
+
+    .btn5 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Строительны\ материалы.jpeg");
+      background-size: 110%;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      transition: transform .1s;
+      border: 2px solid gray;
+      padding-top: 5px;
+      font-size: 17px;
+    }
+
+    .okno1 {
+      margin-left: px;
+    }
+
+    .catolog {
+      margin-left: 30px;
+    }
+
+    .catolog h2 {
+      font-size: 35px;
+    }
+
+    .btn6 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Сантехника.jpeg");
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position: 10px 25px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 10px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .tovar {
+      display: flex;
+      margin-left: 90px;
+    }
+
+    .active {
+      transform: scale(0.9);
+    }
+
+    .btn7 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Крепежные\ материалы.jpg");
+      background-size: 85%;
+      background-repeat: no-repeat;
+      background-position: 10px 25px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 5px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .btn8 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Электроинструменты.jpeg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: 0px 30px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 15px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .btn9 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Электротовары.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: 0px -80px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 15px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .btn10 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Плинтусы.jpg");
+      background-size: 85%;
+      background-repeat: no-repeat;
+      background-position: 10px 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 15px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .tovar1 {
+      display: flex;
+      margin-left: 80px;
+      margin-top: 20px;
+    }
+
+    .btn11 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("Прокат.jpg");
+      background-size: 85%;
+      background-repeat: no-repeat;
+      background-position: 10px 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 15px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .btn12 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("еврокубы.jpg");
+      background-size: 60%;
+      background-repeat: no-repeat;
+      background-position: 30px 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 15px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .btn13 {
+      width: 180px;
+      height: 130px;
+      border-radius: 1.5rem;
+      background-image: url("три\ точки.jpg");
+      background-size: 85%;
+      background-repeat: no-repeat;
+      background-position: 10px 10px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-bottom: 5px;
+      font-weight: bold;
+      background-color: white;
+      padding-top: 25px;
+      transition: transform .1s;
+      margin-left: 10px;
+      border: 2px solid gray;
+      font-size: 17px;
+    }
+
+    .onas {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 25px;
+      margin-left: 150px;
+      margin-right: 150px;
+      padding-bottom: 10px;
+      padding-top: 5px;
+    }
+
+    .text {
+      margin-left: 50px;
+      font-weight: bold
+    }
+
+    .text h2 {
+      font-size: 30px;
+    }
+
+    .footer {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: bold;
+
+    }
+
+    .gis {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-image: url("2\ гис.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .googlemap {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-image: url("гугл\ карта.png");
+      background-size: 190%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .yandex {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-image: url("Яндекс\ карта.png");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .ssilka {
+      display: flex;
+      margin-left: 35%;
+    }
+
+    .magaz {
+      text-align: center;
+    }
+
+
+
+    .nomer {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 45px;
+      margin-left: 30%;
+      margin-right: 30%;
+      border-radius: 40px;
+      padding: 15px;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      /* Начальное состояние: невидимый и сдвинут влево */
+      opacity: 0;
+      transform: translateX(-100px);
+
+      /* Плавный переход для всех свойств (opacity и transform) */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .nomer.is-visible {
+      /* Конечное состояние: полностью видимый и на месте */
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+
+    .adress {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 45px;
+      margin-left: 30%;
+      margin-right: 30%;
+      border-radius: 40px;
+      padding: 15px;
+      margin-bottom: 40px;
+      
+      /* Начальное состояние: невидимый и сдвинут влево */
+      opacity: 0;
+      transform: translateX(-100px);
+
+      /* Плавный переход для всех свойств (opacity и transform) */
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .adress.is-visible {
+      /* Конечное состояние: полностью видимый и на месте */
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+  
+
+    .xxx {
+      text-align: center;
+    }
+
+    .WhatsApp {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-image: url("Ватсап.jpg");
+      background-size: 160%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-position: -18px -10px;
+      border: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .instagram {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-image: url("инстаграм.jpeg");
+      background-size: 115%;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      border: none;
+      margin-top: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .okno5 {
+      margin-top: 40px;
+    }
+    .otziv1{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 1.5%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      padding-left: 30px;
+    }
+    .otziv2{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 1%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      padding-left: 30px;
+    }
+    .otziv3{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 1%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      padding-left: 30px;
+    }
+    .more{
+      display: flex;
+    }
+    .p2{
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .p5{
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .p8{
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .p3{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      width: 45px;
+      height: 25px;
+      text-align: center;
+      padding-top: 5px;
+      color: grey;
+      font-weight: bold;
+    }
+    .p6{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      width: 45px;
+      height: 25px;
+      text-align: center;
+      padding-top: 5px;
+      color: grey;
+      font-weight: bold;
+    }
+    .p9{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      width: 45px;
+      height: 25px;
+      text-align: center;
+      padding-top: 5px;
+      color: grey;
+      font-weight: bold;
+    }
+    .otziv h1{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 5%;
+      margin-right: 83%;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+    }
+    .catolog h1{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 5%;
+      margin-right: 83%;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 18px;
+    }
+    .okno1 h1{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 7%;
+      margin-right: 83%;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 19px;
+    }
+    .okno5 h1{
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      margin-left: 5%;
+      margin-right: 85.5%;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 19px;
+    }
+    .okno5{
+      margin-top: 100px;
+    }
+    </style>
+    /* Responsive for Olzha page */
+    @media (max-width: 768px) {
+      .tovar, .tovar1 { flex-direction: column; }
+      .otziv1, .otziv2, .otziv3 { width: 90%; margin: auto; }
+    }
+    @media (max-width: 480px) {
+      .tovar, .tovar1 { flex-direction: column; }
+      .otziv1, .otziv2, .otziv3 { width: 100%; padding: 10px; }
+    }
+</head>
+
+<body>
+  <div class="navbar">
+    <h1>Олжа</h1>
+    <div class="menu-btn" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="menu" id="menu">
+    <a href="#">🏠 Главная</a>
+    <a href="#">ℹ️ О нас</a>
+    <a href="#">📞 Контакты</a>
+  </div>
+  <div class="catolog">
+    <h1>Каталог</h1>
+    <div class="okno0">
+      <div class="tovar">
+        <button class="btn5" onclick="press(this);window.location.href=`.html`">Строительные<br> материалы</button>
+        <button class="btn6" onclick="press(this);window.location.href=`.html`">Сантехника</button>
+        <button class="btn7" onclick="press(this);window.location.href=`.html`">Крепежные<br> материалы</button>
+        <button class="btn8" onclick="press(this);window.location.href=`.html`">Электроинструменты</button>
+        <button class="btn9" onclick="press(this);window.location.href=`.html`">Электротовары</button>
+        <button class="btn10" onclick="press(this);window.location.href=`.html`">Плинтусы</button>
+      </div>
+      <div class="tovar1">
+        <button class="btn11" onclick="press(this);window.location.href=`.html`">Прокат<br> инструментов</button>
+        <button class="btn12" onclick="press(this);window.location.href=`.html`">Еврокубы</button>
+        <button class="btn13" onclick="press(this);window.location.href=`.html`">Показать все<br> товары</button>
+      </div>
+    </div>
+  </div>
+  <div class="okno1">
+    <h1>Акции</h1>
+    <div class="slider">
+      <div class="slides">
+        <img src="акция.jpeg" alt="">
+        <img src="акция.jpeg" alt="">
+        <img src="акция.jpeg" alt="">
+        <img src="акция.jpeg" alt="">
+      </div>
+      <button class="btn prev">⟨</button>
+      <button class="btn next">⟩</button>
+    </div>
+  </div>
+  <div class="okno5">
+    <h1>О нас</h1>
+    <div class="onas">
+      <div class="text">
+        <h2>Строительный магазин «Олжа»</h2>
+        <p>Это надёжный помощник в строительстве и ремонте. Здесь вы найдёте всё<br> необходимое: от цемента, кирпича и
+          арматуры до лакокрасочных материалов, инструментов и<br> крепежа.</p>
+        <p>Мы предлагаем только качественные товары от проверенных производителей, которые обеспечат прочность и<br>
+          долговечность любого проекта. В ассортименте «Олжа» — материалы для строительства домов,,<br> ремонта квартир
+          и благоустройства участков.</p>
+        <p>Магазин сочетает широкий выбор, честные цены и удобный сервис. Мы помогаем клиентам<br> строить с
+          уверенностью и создавать комфорт в каждом доме.</p>
+      </div>
+    </div>
+  </div>
+  <div class="otziv">
+    <h1>Отзывы</h1>
+    <div class="more">
+    <div class="otziv1">
+      <p class="p1">⭐⭐⭐⭐⭐</p>
+      <p class="p2">Отличный магазин, нашли все для ремонта,<br> хороший сервис. Рекомендую к посещению,<br> хорошее расположение! Клиент Аскер</p>
+      <p class="p2">-Хан Али</p>
+      <p class="p3">2gis</p>
+    </div>
+    <div class="otziv2">
+      <p class="p4">⭐⭐⭐⭐⭐</p>
+      <p class="p5">Добрый день! Отличный магазин, ребята<br> найдут подход каждому клиенту особенно<br> Серик, цены адекватные, успехов в работе и<br> процветания магазину Олжа. Рекомендую<br> всем!</p>
+      <p class="p5">-Дамир Муканмедияров</p>
+      <p class="p6">2gis</p>
+    </div>
+    <div class="otziv3">
+      <p class="p7">⭐⭐⭐⭐⭐</p>
+      <p class="p8">Магазин супер , цены радуют как никак,<br> персонал очень отзывчивый, помогут чем<br> смогут , очень понравилось , вообще суперски<br> 🔥🔥🔥</p>
+      <p class="p8">-Аруна Кенжебай</p>
+      <p class="p9">2gis</p>
+    </div>
+    </div>
+  </div>
+  <div class="magaz">
+    <div class="rabota">
+      <h2>График работы<br>9:00-21:00</h2>
+    </div>
+    <div class="nomer">
+      <h2>Наш номер телефона:</h2>
+      <h2>+7 777 123 1212</h2>
+      <button class="WhatsApp" onclick="press(this);window.location.href=``"></button>
+      <button class="instagram" onclick="press(this);window.location.href=``"></button>
+    </div>
+    <div class="adress">
+      <h2>Наш адрес:</h2>
+      <h2>Ул. Кобыланды батыр 81, Косшы</h2>
+      <div class="ssilka">
+        <button class="gis"
+          onclick="press(this);window.location.href=`https://2gis.kz/astana/geo/70000001081896930`"></button>
+        <button class="googlemap"></button>
+        <button class="yandex"></button>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>✉Если есть ошибки сайта писать на WhatsApp:<br>+7 776 285 7679<br>Или по почте: daurensandzar@gmail.com</p>
+    <p class="xxx">© 2025 Строительный магазин "Олжа". Все права защищены.</p>
+  </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
+    }
+
+    function closeMenu() {
+      document.getElementById("menu").classList.remove("active");
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    const slides = document.querySelector('.slides');
+    const images = document.querySelectorAll('.slides img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    let index = 0;
+    const total = images.length;
+
+    function showSlide(i) {
+      if (i < 0) index = total - 1;
+      else if (i >= total) index = 0;
+      else index = i;
+      slides.style.transform = `translateX(${-index * 100}%)`;
+    }
+
+    function nextSlide() { showSlide(index + 1); }
+    function prevSlide() { showSlide(index - 1); }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // авто-переключение каждые 5 сек
+    setInterval(nextSlide, 5000);
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Получаем все элементы, которые нужно анимировать
+      const blocks = document.querySelectorAll('.rabota');
+
+      // 2. Опции для Observer
+      const options = {
+        // root: null - отслеживание относительно области просмотра (viewport)
+        // rootMargin: '0px 0px -100px 0px' - Сработает, когда до блока останется 100px 
+        // (можно не указывать, по умолчанию '0px')
+        threshold: 0.1 // Срабатывает, когда 10% блока входит в viewport
+      };
+
+      // 3. Функция, которая будет вызываться при пересечении
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          // entry.isIntersecting: true, если элемент попал в область видимости
+          if (entry.isIntersecting) {
+            // Добавляем класс, который запускает CSS-анимацию
+            entry.target.classList.add('is-visible');
+
+            // Прекращаем наблюдение, чтобы анимация сработала только один раз
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      // 4. Создаем экземпляр Intersection Observer
+      const observer = new IntersectionObserver(observerCallback, options);
+
+      // 5. Начинаем наблюдать за всеми блоками
+      blocks.forEach(block => {
+        observer.observe(block);
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Получаем все элементы, которые нужно анимировать
+      const blocks = document.querySelectorAll('.nomer');
+
+      // 2. Опции для Observer
+      const options = {
+        // root: null - отслеживание относительно области просмотра (viewport)
+        // rootMargin: '0px 0px -100px 0px' - Сработает, когда до блока останется 100px 
+        // (можно не указывать, по умолчанию '0px')
+        threshold: 0.1 // Срабатывает, когда 10% блока входит в viewport
+      };
+
+      // 3. Функция, которая будет вызываться при пересечении
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          // entry.isIntersecting: true, если элемент попал в область видимости
+          if (entry.isIntersecting) {
+            // Добавляем класс, который запускает CSS-анимацию
+            entry.target.classList.add('is-visible');
+
+            // Прекращаем наблюдение, чтобы анимация сработала только один раз
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      // 4. Создаем экземпляр Intersection Observer
+      const observer = new IntersectionObserver(observerCallback, options);
+
+      // 5. Начинаем наблюдать за всеми блоками
+      blocks.forEach(block => {
+        observer.observe(block);
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Получаем все элементы, которые нужно анимировать
+      const blocks = document.querySelectorAll('.adress');
+
+      // 2. Опции для Observer
+      const options = {
+        // root: null - отслеживание относительно области просмотра (viewport)
+        // rootMargin: '0px 0px -100px 0px' - Сработает, когда до блока останется 100px 
+        // (можно не указывать, по умолчанию '0px')
+        threshold: 0.1 // Срабатывает, когда 10% блока входит в viewport
+      };
+
+      // 3. Функция, которая будет вызываться при пересечении
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          // entry.isIntersecting: true, если элемент попал в область видимости
+          if (entry.isIntersecting) {
+            // Добавляем класс, который запускает CSS-анимацию
+            entry.target.classList.add('is-visible');
+
+            // Прекращаем наблюдение, чтобы анимация сработала только один раз
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      // 4. Создаем экземпляр Intersection Observer
+      const observer = new IntersectionObserver(observerCallback, options);
+
+      // 5. Начинаем наблюдать за всеми блоками
+      blocks.forEach(block => {
+        observer.observe(block);
+      });
+    });
+  </script>
+</body>
+
+</html>
